@@ -271,8 +271,9 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 -- Screenshots
-hl.bind("SHIFT + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | tee ~/Pictures/Screenshots/Unsorted/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'))
-hl.bind("Print", hl.dsp.exec_cmd('grim - | tee ~/Pictures/Screenshots/Unsorted/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'))
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd('sh -c \'FILE=~/Pictures/Screenshots/Unsorted/$(date +%Y-%m-%d_%H-%M-%S).png; grim -g "$(slurp -d)" "$FILE" && wl-copy < "$FILE"\''))
+hl.bind("Print",         hl.dsp.exec_cmd('sh -c \'FILE=~/Pictures/Screenshots/Unsorted/$(date +%Y-%m-%d_%H-%M-%S).png; grim "$FILE" && wl-copy < "$FILE"\''))
+
 
 
 --------------------------------
