@@ -1,144 +1,185 @@
 {
-  "layer": "top",
-  "position": "top",
-  "height": 36,
-  "spacing": 8,
-  "margin": "6px 6px 0 6px",
   "exclusive": true,
+  "reload_style_on_change": true,
+  "position": "top",
+  "mod": "dock",
   "passthrough": false,
   "gtk-layer-shell": true,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+
+
   "modules-left": [
+    "custom/power",
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "clock"
+ "mpris"
   ],
   "modules-right": [
+    "battery",
+    "power-profiles-daemon",
     "memory",
     "cpu",
-    "temperature",
+    "temperature", 
+
     "backlight",
-    "pulseaudio",
-    "battery",
     "network",
+    "pulseaudio#output",
+    "custom/clock",
     "custom/date",
     "tray"
   ],
-  // Workspaces
+
+
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "format": "{icon}",
     "format-icons": {
-      "focused": "",
-      "urgent": "",
-      "empty": "󰄗"
+      "urgent": ""
+    },
+      "persistent-workspaces": {
+      "*": 3
     }
   },
-  // Clock
-  "clock": {
-    "format": "{:%H:%M:%S}",
-    "tooltip-format": "<big>{:%A %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1
-    },
-    "interval": 1
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   },
-  // Date module
+
+ "cpu": {
+    "interval": 5,
+    "format": " {usage}%",
+    "states": {
+        "warning": 50,
+        "critical": 80
+    }
+  },
+
+
+  "backlight": {
+        "device": "amdgpu_bl1",
+        "format": "{icon} {percent}%",
+        "format-alt": "{percent}% {icon}",
+        "format-alt-click": "click-right",
+        "format-icons": ["","","","","","","","","","","","","󰽢"],
+        "on-scroll-down": "brightnessctl s 5%-",
+        "on-scroll-up": "brightnessctl s +5%"
+    },
+
+
+   "memory": {
+    "interval": 5,
+    "format": " {percentage}%",
+       "states": {
+        "warning": 50,
+        "critical": 80
+    }
+  },
+
+  "custom/clock": {
+    "format":" {}",
+    "exec": "date +'%H:%M'",
+    "interval": 60,
+    "tooltip": false
+},
+
   "custom/date": {
-    "format": "{} 󰃭",
+    "format": "󰃭 {}",
     "exec": "date '+%m/%d/%Y'",
     "interval": 3600,
-    "tooltip": true
+    "tooltip": false
   },
-  // Memory
-  "memory": {
-    "format": " {}%",
-    "interval": 5,
-    "states": {
-      "warning": 85,
-      "critical": 95
-    },
-    "on-click": "kitty -e btop"
+
+
+  "network": {
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰌗",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "omarchy-launch-wifi"
   },
-  // CPU
-  "cpu": {
-    "format": "󰻠 {usage}%",
-    "interval": 2,
-    "states": {
-      "warning": 70,
-      "critical": 90
-    },
-    "on-click": "kitty -e btop"
-  },
-  // Temperature
+
   "temperature": {
     "thermal-zone": 0,
-    "hwmon-path-abs": "/sys/class/thermal/thermal_zone0/temp",
     "format": " {temperatureC}°C",
     "format-critical": "{temperatureC}°C 󱃂",
     "critical-threshold": 80,
     "interval": 5
   },
-  // Backlight
-  "backlight": {
-    "device": "amdgpu_bl1",
-    "format": "{percent}% 󰃟",
-    "on-scroll-up": "brightnessctl set +5%",
-    "on-scroll-down": "brightnessctl set 5%-"
-  },
-  // Audio
-  "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-muted": "󰝟",
+
+   "battery": {
+    "format": "{capacity}% {icon} ",
+    "format-charging": "󱐋 {capacity}% {icon} ",
+    "format-plugged": " {capacity}% ",
     "format-icons": [
-      "󰕿",
-      "󰖀",
-      "󰕾"
+            "",
+            "",
+            "",
+            "",
+            ""
     ],
-    "scroll-step": 5,
-    "on-click": "pavucontrol",
-    "tooltip-format": "{desc}",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-  },
-  // Battery
-  "battery": {
-    "bat": "BAT0",
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󱐋",
-    "format-plugged": "{capacity}% 󱘖",
-    "format-icons": [
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰁹"
-    ],
+    "format-full": "󱊦 {capacity}% ",
+    "interval": 2,
+    "on-click": "omarchy-menu power",
+    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
     "states": {
       "warning": 30,
       "critical": 15
     }
   },
-  // Network - Using network-manager-applet (you have it)
-  "network": {
-    "format-wifi": "{signalStrength}% 󰤨",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰤭",
-    "tooltip-format": "{essid} ({signalStrength}%)\nIP: {ipaddr}",
-    "max-length": 30,
-    "interval": 5,
-    "on-click-right": "kitty -e nmtui"
+
+  "pulseaudio#output": {
+    "format": "{icon} {volume}%",
+     "format-muted": "",
+      "format-icons": {
+      "default": ["", "", ""]
+    },
+    "max-volume": 100,
+    "scroll-step": 2,
+    "smooth-scrolling-threshold": 1,
+    "on-click": "omarchy-launch-audio",
+    "on-click-right": "pamixer -t"
   },
-  // System Tray
+
+ "mpris": {
+    "format": "  {dynamic}",
+    "format-paused": " {status_icon} {dynamic}",
+    "interval": 1, 
+    "dynamic-order": ["artist", "position", "length"], 
+    "dynamic-importance-order": ["position", "length", "artist"],
+    "tooltip-format": "{player} ({status}):\n{artist} - {title}",  
+    "status-icons": {
+      "paused": "󰝛"
+    },
+    "ignored-players": ["firefox", "brave"]
+    },
+
   "tray": {
-    "icon-size": 20,
-    "spacing": 8
+    "icon-size": 13,
+    "spacing": 2
   }
+
 }
