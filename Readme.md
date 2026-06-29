@@ -12,7 +12,9 @@
 <div align="center">
 
 # Minimal Edition
-![4eArch-Hyprland Minimal](./Assets/Screenshots/Minimal-SnowCaution-0.png)
+| | |
+|:---:|:---:|
+|![4eArch-Hyprland Minimal](./Assets/Screenshots/Minimal-SnowCaution-0.png)|![4eArch-Hyprland Minimal](./Assets/Screenshots/Minimal-HazardWatch-0.png)|
 
 ---
 
