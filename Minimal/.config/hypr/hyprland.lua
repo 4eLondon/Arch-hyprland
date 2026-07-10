@@ -11,6 +11,11 @@ hl.monitor({
 })
 
 
+ hl.monitor({
+       output = "HDMI-A-1",
+       mirror = "eDP-1",
+  })
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
