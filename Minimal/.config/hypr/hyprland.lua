@@ -10,17 +10,16 @@ hl.monitor({
     scale    = "1",
 })
 
+hl.monitor({
+    output = "HDMI-A-1",
+    mirror = "eDP-1",
+})
 
- hl.monitor({
-       output = "HDMI-A-1",
-       mirror = "eDP-1",
-  })
 
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
 
--- Set programs that you use
 local terminal    = "foot"
 local fileManager = "dolphin"
 local menu        = "hyprlauncher"
@@ -39,9 +38,6 @@ local menu        = "hyprlauncher"
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
-
 hl.env("XCURSOR_SIZE", "18")
 hl.env("HYPRCURSOR_SIZE", "18")
 
@@ -49,10 +45,6 @@ hl.env("HYPRCURSOR_SIZE", "18")
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
 
 -- hl.config({
 --   ecosystem = {
@@ -77,8 +69,9 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = "rgba(c13c0baa)",
-            inactive_border = "rgba(595959aa)",
+-- Hazard Watch           active_border   = "rgba(fece46aa)",
+            active_border   = "rgba(71241baa)",
+            inactive_border = "rgba(231c33aa)",
         },
 
         resize_on_border = true,
@@ -114,14 +107,12 @@ hl.config({
     },
 })
 
--- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
 hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
 hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
--- Default springs
 hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
 
 hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
@@ -142,9 +133,7 @@ hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "
 hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
 -- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
 -- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
 -- hl.window_rule({
@@ -255,6 +244,20 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:mag
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
+hl.bind(mainMod .. " + CTRL + left",  hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + up",    hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + down",  hl.dsp.window.swap({ direction = "down" }))
+
+
+hl.bind(mainMod .. " + ALT + left",  hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + ALT + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + ALT + up",    hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + ALT + down",  hl.dsp.window.move({ direction = "down" }))
+
+
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
