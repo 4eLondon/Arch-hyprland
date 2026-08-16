@@ -77,7 +77,8 @@ hl.config({
         resize_on_border = true,
 
         allow_tearing = false,
-        layout = "dwindle",
+        -- layout = "dwindle",
+        layout = "master",
     },
 
     decoration = {
@@ -196,8 +197,6 @@ hl.gesture({
     action = "workspace"
 })
 
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
 hl.device({
     name        = "epic-mouse-v1",
     sensitivity = -0.5,
@@ -222,6 +221,12 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("firefox --private-window"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mainMod .. " + L", function()
+    local current = hl.get_config("general.layout")
+    local next_layout = (current == "master") and "dwindle" or "master"
+    hl.config({ general = { layout = next_layout } })
+    hl.notification.create({ text = "Layout: " .. next_layout, timeout = 1500 })
+end)
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -288,22 +293,14 @@ hl.bind("Print",         hl.dsp.exec_cmd('sh -c \'FILE=~/Pictures/Screenshots/Un
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
--- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-
--- Example window rules that are useful
-
 local suppressMaximizeRule = hl.window_rule({
-    -- Ignore maximize requests from all apps. You'll probably like this.
     name  = "suppress-maximize-events",
     match = { class = ".*" },
 
     suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
-    -- Fix some dragging issues with XWayland
     name  = "fix-xwayland-drags",
     match = {
         class      = "^$",
