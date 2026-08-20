@@ -91,7 +91,7 @@ select choice in "cmus" "mpv"  "sox" "mpg123" "ncmpcpp" "none"; do
       grep -qxF "alias mplay='mpg123 -C" ~/.bashrc || echo "alias mplay='mpg123 -C'" >> ~/.bashrc
       break
       ;;
-    "ncmcpp")
+    "ncmpcpp")
       sudo  pacman -S --needed --noconfirm mpd ncmpcpp
       break
       ;;
@@ -164,7 +164,7 @@ else
      echo "- Skipping Webcord -"
 fi
 
-read -p "Would you like install Thunderbird email client? (Y/N)" thunder
+read -p "Would you like install Thunderbird email client? (Y/N)" thunderbird
 if [[ "$thunderbird" == "Y" || "$thunderbird" == "y" ]];then
       sudo  pacman -S --needed --noconfirm thunderbird
 else
