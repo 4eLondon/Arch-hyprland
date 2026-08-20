@@ -94,9 +94,9 @@ read -p "Install ssh?: (y/n)" sshcheck
 
 if [[ "$sshcheck" == 'y' || "$sshcheck" == 'Y' ]]; then
     sudo pacman -S openssh
-    systemctl enable sshd
-    systemctl start --now sshd
-    systemctl status sshd
+    sudo systemctl enable sshd
+    sudo systemctl start --now sshd
+    sudo systemctl status sshd
 
     echo -e " - ( Configuring ufw to limit ssh ) - \n"
     sudo ufw limit ssh
