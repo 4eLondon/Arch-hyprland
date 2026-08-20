@@ -4,23 +4,20 @@ REPO_DIR="$(pwd)"
 
 echo -e "\n+ + [ Now configuring desktop environment ] + + \n"
 
-mkdir -p .config/{hypr,foot,waybar,dunst}
+mkdir -p  ~/.config/{hypr,foot,waybar,dunst}
 
 echo -e " - ( Installing core services and tools )  - \n"
-sudo pacman -S --needed --noconfirm \
-ly brightnessctl playerctl tlp libnotify uwsm hyprland ufw polkit-gnome
+sudo pacman -S --needed --noconfirm ly brightnessctl playerctl tlp libnotify uwsm hyprland ufw polkit-gnome
 
 sudo systemctl enable ly.service
 sudo systemctl enable tlp.service
 sudo systemctl enable ufw
 
 echo -e " - ( Installing core hyprland features )  - \n"
-sudo  pacman -S --needed --noconfirm \ 
-hyprpaper hypridle hyprlock firefox wofi
+sudo  pacman -S --needed --noconfirm hyprpaper hypridle hyprlock firefox wofi
 
 echo -e " - ( Installing secondary desktop features )  - \n"
-sudo  pacman -S --needed --noconfirm \
-waybar foot dunst wl-clipboard grim slurp unzip 7zip zip unrar hyprpicker 
+sudo  pacman -S --needed --noconfirm waybar foot dunst wl-clipboard grim slurp unzip 7zip zip unrar hyprpicker 
 
 echo " - ( Copying repo config folders into ~/.config ) - "
 
