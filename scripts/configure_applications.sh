@@ -28,11 +28,11 @@ select choice in "nsxiv" "imv" "sxiv" "chafa" "timg" "none"; do
       break
       ;;
     "none")
-      echo -e "Skipping image viewer"
+      echo -e "Skipping image viewer \n"
       break
       ;;
     *)
-      echo "Not a valid option, try again."
+      echo "Not a valid option, try again. \n"
       ;;
   esac
 done
@@ -58,11 +58,11 @@ select choice in "mpv" "celluloid"  "ffplay" "haruna" "none"; do
       break
       ;;
     "none")
-      echo -e "Skipping video player"
+      echo -e "Skipping video player \n"
       break
       ;;
     *)
-      echo "Not a valid option, try again."
+      echo "Not a valid option, try again. \n"
       ;;
   esac
 done
@@ -96,11 +96,11 @@ select choice in "cmus" "mpv"  "sox" "mpg123" "ncmpcpp" "none"; do
       break
       ;;
     "none")
-      echo -e "Skipping audio player"
+      echo -e "Skipping audio player \n"
       break
       ;;
     *)
-      echo "Not a valid option, try again."
+      echo "Not a valid option, try again. \n"
       ;;
   esac
 done
@@ -117,76 +117,66 @@ if [[ "$blue" == "Y" || "$blue" == "y" ]];then
       rfkill list
       rfkill unblock bluetooth
 else
-    "- Skipping Bluetooth -"
+   echo "- Skipping Bluetooth -"
 fi
 
 read -p "Would you like install Libreoffice? (Y/N)" office
 if [[ "$office" == "Y" || "$office" == "y" ]];then
       sudo  pacman -S --needed --noconfirm libreoffice-still mythes-en hunspell-en_us  
 else
-    "- Skipping libre office -"
+    echo "- Skipping libre office -"
 fi
 
 read -p "Would you like install File roller for archives (zip,rar,ect)? (Y/N)" fileroller
 if [[ "$fileroller" == "Y" || "$fileroller" == "y" ]];then
       sudo  pacman -S --needed --noconfirm file-roller
 else
-    "- Skipping File roller -"
+  echo "- Skipping File roller -"
 fi
 
 read -p "Would you like install Zathura PDF viewer? (Y/N)" zathura
 if [[ "$zathura" == "Y" || "$zathura" == "y" ]];then
       sudo  pacman -S --needed --noconfirm zathura zathura-pdf-mupdf
 else
-    "- Skipping zathura -"
+  echo "- Skipping zathura -"
 fi
 
 read -p "Would you like install Obsidian for note taking? (Y/N)" obsidian
 if [[ "$obsidian" == "Y" || "$obsidian" == "y" ]];then
       sudo  pacman -S --needed --noconfirm obsidian glow
 else
-    "- Skipping obsidian -"
+     echo "- Skipping obsidian -"
 fi
 
 echo -e " [ Communication and entertainment software] \n"
 
-read -p "Would you like install Thunderbird email client? (Y/N)" steam
+read -p "Would you like install Steam? (Y/N)" steam
 if [[ "$steam" == "Y" || "$steam" == "y" ]];then
       sudo  pacman -S --needed --noconfirm steam
 else
-    "- Skipping Steam -"
+     echo "- Skipping Steam -"
 fi
 
 read -p "Would you like install Webcord/Discord? (Y/N)" webcord
 if [[ "$webcord" == "Y" || "$webcord" == "y" ]];then
       sudo  pacman -S --needed --noconfirm webcord
 else
-    "- Skipping Webcord -"
+     echo "- Skipping Webcord -"
 fi
 
 read -p "Would you like install Thunderbird email client? (Y/N)" thunder
 if [[ "$thunderbird" == "Y" || "$thunderbird" == "y" ]];then
       sudo  pacman -S --needed --noconfirm thunderbird
 else
-    "- Skipping Thunderbird -"
+     echo "- Skipping Thunderbird -"
 fi
 
 read -p "Would you like install Qbittorrent for torrent support? (Y/N)" qbit
 if [[ "$qbit" == "Y" || "$qbit" == "y" ]];then
       sudo  pacman -S --needed --noconfirm qbittorrent 
 else
-    "- Skipping Qbittorrent -"
+     echo "- Skipping Qbittorrent -"
 fi
-
-read -p "Would you like install Qbittorrent for torrent support? (Y/N)" qbit
-if [[ "$qbit" == "Y" || "$qbit" == "y" ]];then
-      sudo  pacman -S --needed --noconfirm qbittorrent 
-else
-    "- Skipping Qbittorrent -"
-fi
-
-
-
 
 
 echo -e " [Creative software] \n"
@@ -194,27 +184,27 @@ read -p "Would you like install Krita? (Y/N)" krita
 if [[ "$krita" == "Y" || "$krita" == "y" ]];then
       sudo  pacman -S --needed --noconfirm krita
 else
-    "- Skipping krita -"
+     echo "- Skipping krita -"
 fi
 
 read -p "Would you like install Inkscape ? (Y/N)" ink
 if [[ "$ink" == "Y" || "$ink" == "y" ]];then ink
       sudo  pacman -S --needed --noconfirm inkscape
 else
-    "- Skipping inkscape -"
+     echo "- Skipping inkscape -"
 fi
 
 read -p "Would you like install Libresprite ? (Y/N)" libsprite
 if [[ "$libsprite" == "Y" || "$libsprite" == "y" ]];then
       sudo  pacman -S --needed --noconfirm libresprite
 else
-    "- Skipping libresprite -"
+     echo "- Skipping libresprite -"
 fi
 read -p "Would you like install Obs Studio? (Y/N)" obs
 if [[ "$obs" == "Y" || "$obs" == "y" ]];then
       sudo  pacman -S --needed --noconfirm obs-studio 
 else
-    "- Skipping obsstudio -"
+     echo "- Skipping obsstudio -"
 fi
 
 echo -e "\n+ + [ Done ] + + \n"
