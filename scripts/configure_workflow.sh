@@ -6,9 +6,9 @@ echo -e "\n+ + [ Now configuring desktop environment ] + + \n"
 
 echo -e " [Development] \n"
 
-read "Install and configure git?: (y/n)" gitcheck
+read -p "Install and configure git?: (y/n)" gitcheck
 
-if [[ "gitcheck" == 'y' || "gitcheck" == 'Y' ]]; then
+if [[ "$gitcheck" == 'y' || "$gitcheck" == 'Y' ]]; then
     sudo pacman -S git git-delta onefetch
 
     read -p "Enter your git user name: " gitUsername
@@ -90,17 +90,16 @@ fi
 
 echo -e " [Networking] \n"
 
-read "Install ssh?: (y/n)" sshcheck
+read -p "Install ssh?: (y/n)" sshcheck
 
-if [[ "sshcheck" == 'y' || "sshcheck" == 'Y' ]]; then
+if [[ "$sshcheck" == 'y' || "$sshcheck" == 'Y' ]]; then
     sudo pacman -S openssh
     systemctl enable sshd
     systemctl start --now sshd
-
-    echo " "
-    echo " "
     systemctl status sshd
-    sudo limit ssh
+
+    echo -e " - ( Configuring ufw to limit ssh ) - \n"
+    sudo ufw limit ssh
 
 else
     echo "Skipping SSH install"
