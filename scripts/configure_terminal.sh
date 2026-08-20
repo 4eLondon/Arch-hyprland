@@ -5,14 +5,13 @@ REPO_DIR="$(pwd)"
 echo -e "\n+ + [ Now configuring terminal ] + + \n"
 
 echo -e " - ( Installing extended terminal tools )  - \n"
-sudo pacman -S --needed --noconfirm \
-eza fzf bat zoxide man-db man-pages btop pfetch vim nvim yazi
+sudo pacman -S --needed --noconfirm eza fzf bat zoxide man-db man-pages btop pfetch vim nvim yazi
 
 echo -e " - ( Configuring extended terminal tools )  - \n"
 cp -rv "$REPO_DIR/Minimal/.config/nvim"    ~/.config/nvim
 cp -rv "$REPO_DIR/Minimal/.config/.vimrc"    ~/
 
-read -p "Would you like to overwrite the baschrc? (Y/N)" bashrcChoice
+read -p "Would you like to overwrite the bashrc? (Y/N)" bashrcChoice
 
 if [[ "$bashrcChoice" == "Y" || "$bashrcChoice" == "y" ]];then
     echo -e " - ( Writing core features to bashrc )  - \n"
