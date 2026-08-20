@@ -32,7 +32,7 @@ select choice in "nsxiv" "imv" "sxiv" "chafa" "timg" "none"; do
       break
       ;;
     *)
-      echo "Not a valid option, try again. \n"
+      echo -e "Not a valid option, try again. \n"
       ;;
   esac
 done
@@ -62,7 +62,7 @@ select choice in "mpv" "celluloid"  "ffplay" "haruna" "none"; do
       break
       ;;
     *)
-      echo "Not a valid option, try again. \n"
+      echo -e "Not a valid option, try again. \n"
       ;;
   esac
 done
@@ -100,7 +100,7 @@ select choice in "cmus" "mpv"  "sox" "mpg123" "ncmpcpp" "none"; do
       break
       ;;
     *)
-      echo "Not a valid option, try again. \n"
+      echo -e "Not a valid option, try again. \n"
       ;;
   esac
 done
@@ -188,7 +188,7 @@ else
 fi
 
 read -p "Would you like install Inkscape ? (Y/N)" ink
-if [[ "$ink" == "Y" || "$ink" == "y" ]];then ink
+if [[ "$ink" == "Y" || "$ink" == "y" ]];then
       sudo  pacman -S --needed --noconfirm inkscape
 else
      echo "- Skipping inkscape -"
