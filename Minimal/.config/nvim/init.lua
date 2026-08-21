@@ -11,6 +11,24 @@ vim.opt.number = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.termguicolors = false
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+        -- Map syntax groups to terminal ANSI slots (0-15)
+        vim.api.nvim_set_hl(0, "@comment", { ctermfg = 8 })
+        vim.api.nvim_set_hl(0, "@string", { ctermfg = 2 })
+        vim.api.nvim_set_hl(0, "@function", { ctermfg = 4 })
+        vim.api.nvim_set_hl(0, "@keyword", { ctermfg = 5 })
+        vim.api.nvim_set_hl(0, "@type", { ctermfg = 3 })
+        vim.api.nvim_set_hl(0, "@variable", { ctermfg = 7 })
+        vim.api.nvim_set_hl(0, "@constant", { ctermfg = 6 })
+        vim.api.nvim_set_hl(0, "@number", { ctermfg = 6 })
+    end,
+})
 
 -- Wrapping
 vim.opt.wrap = true
