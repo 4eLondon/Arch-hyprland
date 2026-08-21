@@ -70,7 +70,11 @@ hl.config({
 
         col = {
 -- Hazard Watch           active_border   = "rgba(fece46aa)",
-            active_border   = "rgba(71241baa)",
+-- Snow Caution           active_border   = "rgba(71241baa)",
+-- Deep Forest            active_border   = "rgba(929f4daa)",
+-- Ocean Zero             active_border   = "rgba(5080b8aa)",
+
+            active_border   = "rgba(5080b8aa)",
             inactive_border = "rgba(231c33aa)",
         },
 
