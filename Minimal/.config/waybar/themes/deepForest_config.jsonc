@@ -67,7 +67,7 @@
     "player": "firefox",
     "format": "{player_icon} {title}",
     "format-paused": "{status_icon} <i> {title}</i>",
-    "max-length": 10,
+    "max-length": 20,
     "on-click": "playerctl -p $(playerctl -l | grep '^firefox' | head -1) play-pause",
     "player-icons": {
       "default": "󰈹"
