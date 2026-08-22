@@ -44,16 +44,33 @@
   "group/right1": {
     "orientation": "inherit",
     "modules": [
-      "mpris"
+      "mpris#firefox",
+      "mpris#mpv"
     ]
   },
-  "mpris": {
+  "mpris#mpv": {
+    "player": "mpv",
     "format": "{player_icon} {title}",
     "format-paused": "{status_icon} <i> {title}</i>",
     "max-length": 20,
+    "on-click": "playerctl -p mpv play-pause",
+    "on-click-right": "pkill -x mpv",
     "player-icons": {
-      "default": "",
-      "mpv": ""
+      "default": ""
+    },
+     "status-icons": {
+      "paused": "⏸"
+    }
+  },
+
+  "mpris#firefox": {
+    "player": "firefox",
+    "format": "{player_icon} {title}",
+    "format-paused": "{status_icon} <i> {title}</i>",
+    "max-length": 10,
+    "on-click": "playerctl -p $(playerctl -l | grep '^firefox' | head -1) play-pause",
+    "player-icons": {
+      "default": "󰈹"
     },
     "status-icons": {
       "paused": "⏸"
